@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammadrasul | Road to Senior</title>
+    <style>
+        /* 1. CSS - DIZAYN VA RESPONSIVE */
+        :root {
+            --primary: #00d2ff;
+            --secondary: #9b59b6;
+            --dark: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --text-gray: #94a3b8;
+        }
+
+        body {
+            background-color: var(--dark);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(0, 210, 255, 0.1) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(155, 89, 182, 0.1) 0px, transparent 50%);
+            color: white;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .main-container {
+            width: 100%;
+            max-width: 1000px;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr; /* Desktopda 2 ustun */
+            gap: 30px;
+        }
+
+        /* Mobil qurilmalar uchun moslashuv (Responsive) */
+        @media (max-width: 850px) {
+            .main-container {
+                grid-template-columns: 1fr; /* Mobilda 1 ustun */
+            }
+        }
+
+        /* Profile Card */
+        .profile-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 25px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            text-align: center;
+        }
+
+        .img-frame {
+            width: 100%;
+            height: 250px;
+            background: #1e293b;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .skeleton {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite linear;
+            position: absolute;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        #mrImage {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .loaded #mrImage { opacity: 1; }
+        .loaded .skeleton { display: none; }
+
+        /* Reja (Roadmap) qismi */
+        .roadmap-container {
+            background: var(--card-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 30px;
+        }
+
+        .step {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 45px;
+            width: 2px;
+            height: calc(100% - 20px);
+            background: rgba(255,255,255,0.1);
+        }
+
+        .step-num {
+            width: 40px;
+            height: 40px;
+            background: #1e293b;
+            border: 2px solid var(--text-gray);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-weight: bold;
+            z-index: 1;
+        }
+
+        .step.done .step-num {
+            background: #22c55e;
+            border-color: #22c55e;
+            color: white;
+        }
+
+        .step.current .step-num {
+            background: var(--primary);
+            border-color: var(--primary);
+            box-shadow: 0 0 15px var(--primary);
+        }
+
+        .step-content h3 {
+            margin: 0 0 5px 0;
+            font-size: 18px;
+        }
+
+        .step-content p {
+            margin: 0;
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+
+        .badge {
+            font-size: 10px;
+            padding: 2px 8px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.1);
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        
+        <div class="profile-card">
+            <div class="img-frame" id="imgWrapper">
+                <div class="skeleton"></div>
+                <img src="img/mr.png" alt="Muhammadrasul" id="mrImage">
+            </div>
+            <h2 style="margin: 10px 0;">Muhammadrasul</h2>
+            <p style="color: var(--primary); font-weight: bold;">Junior Developer</p>
+            <p style="font-size: 14px; color: var(--text-gray);">
+                Linux terminalini yaxshi ko'radigan va Web olamini o'rganayotgan bo'lajak Senior.
+            </p>
+            <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 20px 0;">
+            <div style="text-align: left; font-size: 14px;">
+                <div>📍 Toshkent, O'zbekiston</div>
+                <div>💻 Stack: HTML, CSS, JS, Linux</div>
+            </div>
+        </div>
+
+        <div class="roadmap-container">
+            <h2 style="margin-top: 0; border-bottom: 2px solid var(--primary); display: inline-block;">O'rganish Rejam 🚀</h2>
+            
+            <div style="margin-top: 30px;">
+                <div class="step done">
+                    <div class="step-num">✓</div>
+                    <div class="step-content">
+                        <h3>HTML & CSS Asoslari <span class="badge"><span style="color: blue;"><h2><b><span style="font-family: arial;">Qaytish</span></b></h2></span>andi</span></h3>
+                        <p>Relative path, img tagi va GitHub Pages'ga yuklashni o'rgandim.</p>
+                    </div>
+                </div>
+
+                <div class="step current">
+                    <div class="step-num">2</div>
+                    <div class="step-content">
+                        <h3>JavaScript & Animatsiyalar <span class="badge">Hozirda</span></h3>
+                        <p>Skeleton loader, DOM manipulation va interaktiv saytlar yaratish.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <div class="step-content">
+                        <h3>Advanced Linux & Git</h3>
+                        <p>Terminalda mukammal ishlash, SSH keys va jamoaviy Git workflow.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-num">4</div>
+                    <div class="step-content">
+                        <h3>Docker & Deployment</h3>
+                        <p>Loyihalarni konteynerlarga o'rash va real serverlarga yuklash.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-num">5</div>
+                    <div class="step-content">
+                        <h3>Senior darajasi</h3>
+                        <p>Murakkab arxitekturalar va katta loyihalarni boshqarish.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const img = document.getElementById('mrImage');
+        const wrapper = document.getElementById('imgWrapper');
+
+        // Rasm yuklanganda 'loaded' klassini qo'shish
+        img.addEventListener('load', () => {
+            wrapper.classList.add('loaded');
+        });
+
+        // Agar rasm yuklanishda xato bo'lsa (fayl topilmasa)
+        img.addEventListener('error', () => {
+            wrapper.innerHTML = '<div style="color: #f87171; padding-top: 100px; font-size: 12px;">Rasm topilmadi!<br>(img/mr.png)</div>';
+        });
+
+        // Keshni tekshirish
+        if (img.complete) {
+            wrapper.classList.add('loaded');
+        }
+    </script>
+</body>
+</html>
